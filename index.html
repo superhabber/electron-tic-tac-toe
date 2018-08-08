@@ -1,19 +1,134 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <head>
+        <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+                <title>
+                    Hello World!
+                </title>
+                <meta content="ie=edge" http-equiv="X-UA-Compatible">
+                    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+                        <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
+                            <link href="./app/css/init.css" rel="stylesheet">
+                            </link>
+                        </link>
+                    </link>
+                </meta>
+            </meta>
+        </meta>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="#" style="-webkit-app-region: drag;">
+                Хрестики-нолики by Yaroslav Palamarchuk
+            </a>
+            <div class="collapse navbar-collapse">
+            </div>
+            <div class="my-2 my-md-0 text-center btn mr-2 item" id="minimize-screen">
+                <b>
+                    <i class="far fa-window-minimize pl-1 pr-1" style="color:white;">
+                    </i>
+                </b>
+            </div>
+            <div class="my-2 my-md-0 text-center btn ml-2 item" id="close-screen">
+                <b>
+                    <i class="fas fa-times pl-1 pr-1" style="color:white;">
+                    </i>
+                </b>
+            </div>
+        </nav>
+        <section class="container-fluid">
+            <div class="row">
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
+                <div class="col fp text-center">
+                    <h3 class="mt-3 mb-3">
+                        Гравець 1
+                    </h3>
+                    
+                    <div class="chose">
+                      <p class="mt-3 mb-4">Виберіть чим грати</p>
+                      <div class="els row">
+                        <div class="card figure fp col-6 text-center mt-3" style="cursor: pointer;" id="c" onclick="changeSelected(this)">
+                          <i class="far fa-circle" style="font-size: 56px;"></i>
+                        </div>
+                        <div class="card figure fp col-6 text-center mt-3" style="cursor: pointer;" id="x" onclick="changeSelected(this)">
+                          <i class="fas fa-times" style="font-size: 56px;"></i>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-6 " style="margin-top: 5em;">
+                    
+                    <div class="text-center">
+                      <h1 class="status d-none">Черга гравця <span class="who"></span></h1>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="col m-2 mt-5 w card text-center" value="1" style="border: 1px solid black">
+
+                        </div>
+                        <div class="col m-2 mt-5 w card text-center" value="2" style="border: 1px solid black">
+                        </div>
+                        <div class="col m-2 mt-5 w card text-center" value="3" style="border: 1px solid black">
+                        </div>
+                    </div>
+                    <div class="row col-12">
+                        <div class="col m-2 mt-1 w card text-center" value="4" style="border: 1px solid black">
+                        </div>
+                        <div class="col m-2 mt-1 w card text-center" value="5" style="border: 1px solid black">
+                        </div>
+                        <div class="col m-2 mt-1 w card text-center" value="6" style="border: 1px solid black">
+                        </div>
+                    </div>
+                    <div class="row col-12">
+                        <div class="col m-2 mt-1 w card text-center" value="7" style="border: 1px solid black">
+                        </div>
+                        <div class="col m-2 mt-1 w card text-center" value="8" style="border: 1px solid black">
+                        </div>
+                        <div class="col m-2 mt-1 w card text-center" value="9" style="border: 1px solid black">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col sp text-center">
+                    <h3 class="mt-3 mb-3">
+                        Гравець 2
+                    </h3>
+                    <div class="chose mt-2">
+                      <p class="mt-3 mb-4">Виберіть чим грати</p>
+                      <div class="els row">
+                        <div class="card figure sp col-6 text-center mt-3" style="cursor: pointer;" id="c" onclick="changeSelected(this)">
+                          <i class="far fa-circle" style="font-size: 56px;"></i>
+                        </div>
+                        <div class="card figure sp col-6 text-center mt-3" style="cursor: pointer;" id="x" onclick="changeSelected(this)">
+                          <i class="fas fa-times" style="font-size: 56px;"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row mt-5 start d-none">
+              <div class="col-12 text-center">
+                <button class="btn btn-success mx-auto" onclick="startgame(this)">Почати</button>
+              </div>
+            </div>
+            <div class="row mt-5 again d-none">
+              <div class="col-12 text-center">
+                <button class="btn btn-warning mx-auto" onclick="startgame(this)">Почати наново</button>
+              </div>
+            </div>
+        </section>
+    </body>
+    <script src="./node_modules/jquery/dist/jquery.min.js">
     </script>
-  </body>
+    <script src="./node_modules/jquery/dist/jquery.slim.min.js">
+    </script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js">
+    </script>
+    <script src="./app/js/init.js">
+    </script>
 </html>

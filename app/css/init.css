@@ -1,0 +1,24 @@
+body, html{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.item{
+	padding: 7px;
+	cursor: pointer;	
+}
+
+.title{
+	display: inline-block;
+	max-width: 85%;
+	width: 85%;
+}
+.card{
+	height: 60px;
+	width: 60px;
+}
+
+.figure.bordered{
+	border:2px solid blue;
+}
